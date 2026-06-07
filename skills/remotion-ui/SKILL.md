@@ -12,7 +12,11 @@ metadata:
 
 Use this skill when working with the RemotionUI monorepo or helping users add Remotion video components.
 
-For Remotion framework best practices (timing, audio, compositions), see the official `remotion` skill at [skills/remotion/SKILL.md](../remotion/SKILL.md).
+For Remotion framework best practices, read in order:
+
+1. **[skills/remotion/docs/INDEX.md](../remotion/docs/INDEX.md)** — mirrored official remotion.dev docs (`pnpm docs:remotion` to refresh)
+2. **[skills/remotion/SKILL.md](../remotion/SKILL.md)** — Remotion skill + conventions
+3. **[skills/remotion/rules/video-layout.md](../remotion/rules/video-layout.md)** — prevent overlapping layouts
 
 ## When to use
 

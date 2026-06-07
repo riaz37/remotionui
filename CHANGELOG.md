@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.2.2
+
+### Changed
+
+- `spring-in` uses official `spring({ delay })` API
+- `intro` uses `premountFor` on full-frame `<Sequence>` blocks
+- Counter preview centered with `AbsoluteFill`
+- Remotion pin bumped to `^4.0.473`
+
+### Added
+
+- `.cursor/rules/remotion.mdc` — agent rule for registry/preview authoring
+- `scripts/patch-remotion-skill-docs.mjs` — preserve docs mirror after skill sync
+- `pnpm skills:sync` now refreshes official docs mirror automatically
+
 ## 0.2.1
 
 ### Fixed

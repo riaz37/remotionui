@@ -18,9 +18,10 @@ export const SpringIn: React.FC<SpringInProps> = ({
   const { fps } = useVideoConfig();
 
   const progress = spring({
-    frame: frame - delayInFrames,
+    frame,
     fps,
     config: springSnappy,
+    delay: delayInFrames,
     durationInFrames,
   });
 

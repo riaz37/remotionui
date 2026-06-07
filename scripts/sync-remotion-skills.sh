@@ -28,9 +28,18 @@ if [ ! -d "$SRC_PATH" ]; then
   exit 1
 fi
 
+DOCS_BACKUP="$TMP_DIR/docs-backup"
+if [ -d "$DEST_DIR/docs" ]; then
+  cp -R "$DEST_DIR/docs" "$DOCS_BACKUP"
+fi
+
 rm -rf "$DEST_DIR"
 mkdir -p "$DEST_DIR"
 cp -R "$SRC_PATH/." "$DEST_DIR/"
+
+if [ -d "$DOCS_BACKUP" ]; then
+  cp -R "$DOCS_BACKUP" "$DEST_DIR/docs"
+fi
 
 cat > "$DEST_DIR/VERSION" <<EOF
 upstream: remotion-dev/remotion

@@ -11,8 +11,8 @@
     "postinstall": "fumadocs-mdx"
   },
   "dependencies": {
-    "@remotion/player": "^4.0.242",
-    "@remotion/transitions": "^4.0.242",
+    "@remotion/player": "^4.0.473",
+    "@remotion/transitions": "^4.0.473",
     "@tailwindcss/postcss": "^4.3.0",
     "fumadocs-core": "^16.9.3",
     "fumadocs-mdx": "^15.0.11",
@@ -21,7 +21,7 @@
     "postcss": "^8.5.15",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "remotion": "^4.0.242",
+    "remotion": "^4.0.473",
     "tailwindcss": "^4.3.0",
     "zod": "^4.4.3"
   },
