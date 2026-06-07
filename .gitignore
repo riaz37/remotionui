@@ -12,6 +12,9 @@ out
 # registry build artifacts
 apps/web/public/r/**/*.json
 
+# fumadocs generated
+apps/web/.source/
+
 # env
 .env
 .env*.local

@@ -1,30 +1,57 @@
+import Link from "next/link";
+
+const primitives = [
+  { name: "Fade In", slug: "fade-in" },
+  { name: "Fade Out", slug: "fade-out" },
+  { name: "Slide Up", slug: "slide-up" },
+  { name: "Slide Left", slug: "slide-left" },
+  { name: "Scale In", slug: "scale-in" },
+  { name: "Typewriter", slug: "typewriter" },
+  { name: "Counter", slug: "counter" },
+  { name: "Blur In", slug: "blur-in" },
+];
+
 export default function HomePage() {
   return (
-    <main
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: "100vh",
-        fontFamily: "system-ui, sans-serif",
-        padding: "2rem",
-      }}
-    >
-      <h1 style={{ fontSize: "2.5rem", marginBottom: "0.5rem" }}>RemotionUI</h1>
-      <p style={{ color: "#666", marginBottom: "2rem" }}>
-        The shadcn/ui equivalent for Remotion video development.
+    <main className="mx-auto flex min-h-screen max-w-4xl flex-col px-6 py-16">
+      <h1 className="text-4xl font-bold tracking-tight">RemotionUI</h1>
+      <p className="mt-3 text-lg text-fd-muted-foreground">
+        The shadcn/ui of Remotion — copy-paste video components you own.
       </p>
-      <code
-        style={{
-          background: "#f4f4f5",
-          padding: "0.75rem 1.25rem",
-          borderRadius: "0.5rem",
-          fontSize: "0.9rem",
-        }}
-      >
-        npx remotion-ui@latest add fade-in
-      </code>
+
+      <pre className="mt-8 rounded-lg bg-fd-muted p-4 text-sm">
+        <code>npx remotion-ui@latest init my-video</code>
+      </pre>
+
+      <div className="mt-12">
+        <h2 className="text-xl font-semibold">Primitives</h2>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          {primitives.map((item) => (
+            <Link
+              key={item.slug}
+              href={`/docs/primitives/${item.slug}`}
+              className="rounded-lg border border-fd-border px-4 py-3 transition-colors hover:bg-fd-muted"
+            >
+              {item.name}
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-8 flex gap-4">
+        <Link
+          href="/docs"
+          className="rounded-lg bg-fd-primary px-4 py-2 text-fd-primary-foreground"
+        >
+          Documentation
+        </Link>
+        <Link
+          href="/docs/installation"
+          className="rounded-lg border border-fd-border px-4 py-2"
+        >
+          Get Started
+        </Link>
+      </div>
     </main>
   );
 }

@@ -1,0 +1,13 @@
+{
+  "name": "slide-left",
+  "type": "registry:ui",
+  "dependencies": ["remotion"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/bases/default/primitives/slide-left.tsx",
+      "type": "registry:ui",
+      "content": "export const SlideLeft = () => null;\n"
+    }
+  ]
+}

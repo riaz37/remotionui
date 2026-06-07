@@ -1,8 +1,10 @@
 import { execSync } from "node:child_process";
 import path from "node:path";
+import { patchRootTsx } from "../remotion/composition-patch.js";
 import { fetchRegistryItem } from "../registry/fetch-item.js";
 import {
   getConfig,
+  isCompositionItem,
   resolveInstallPath,
 } from "../utils/get-config.js";
 import {
@@ -86,6 +88,16 @@ async function installComponent(
     const targetPath = resolveInstallPath(ctx.cwd, ctx.config, file);
     await writeFile(targetPath, file.content);
     console.log(`  ✓ ${path.relative(ctx.cwd, targetPath)}`);
+  }
+
+  if (item.composition && isCompositionItem(item.files)) {
+    const rootPath = path.resolve(ctx.cwd, ctx.config.remotion.root);
+    await patchRootTsx(rootPath, {
+      ...item.composition,
+      importPath:
+        item.composition.importPath ??
+        `@/compositions/${name}/index`,
+    });
   }
 
   for (const dep of item.dependencies ?? []) {

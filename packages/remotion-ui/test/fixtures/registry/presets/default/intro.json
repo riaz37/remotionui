@@ -1,0 +1,22 @@
+{
+  "name": "intro",
+  "type": "registry:block",
+  "dependencies": ["remotion"],
+  "registryDependencies": [],
+  "composition": {
+    "id": "Intro",
+    "component": "Intro",
+    "durationInFrames": 150,
+    "fps": 30,
+    "width": 1920,
+    "height": 1080,
+    "importPath": "@/compositions/intro/index"
+  },
+  "files": [
+    {
+      "path": "registry/bases/default/compositions/intro/index.tsx",
+      "type": "registry:block",
+      "content": "export const Intro = () => null;\n"
+    }
+  ]
+}

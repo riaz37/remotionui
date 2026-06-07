@@ -1,11 +1,4 @@
 {
   "title": "Documentation",
-  "pages": [
-    "(root)",
-    "installation",
-    "primitives",
-    "scenes",
-    "compositions",
-    "registry"
-  ]
+  "pages": ["index", "installation", "primitives", "scenes", "compositions", "registry"]
 }

@@ -1,13 +1,30 @@
 {
   "name": "remotion-ui",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Add Remotion video components to your project — copy-paste, fully customisable.",
+  "homepage": "https://remotionui.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riaz37/remotionui.git",
+    "directory": "packages/remotion-ui"
+  },
+  "bugs": {
+    "url": "https://github.com/riaz37/remotionui/issues"
+  },
+  "keywords": [
+    "remotion",
+    "video",
+    "react",
+    "cli",
+    "components",
+    "registry"
+  ],
   "license": "MIT",
   "type": "module",
   "bin": {
     "remotion-ui": "./dist/index.js"
   },
-  "files": ["dist"],
+  "files": ["dist", "templates"],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -24,9 +41,10 @@
   },
   "scripts": {
     "build": "tsup",
+    "prepublishOnly": "pnpm build",
     "dev": "tsup --watch",
     "lint": "tsc --noEmit",
-    "test": "echo \"Tests coming soon\""
+    "test": "vitest run"
   },
   "dependencies": {
     "commander": "^13.1.0",
@@ -39,7 +57,8 @@
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.13.4",
     "tsup": "^8.3.6",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5"
   },
   "publishConfig": {
     "access": "public"

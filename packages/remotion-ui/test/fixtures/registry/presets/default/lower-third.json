@@ -1,0 +1,13 @@
+{
+  "name": "lower-third",
+  "type": "registry:block",
+  "dependencies": ["remotion"],
+  "registryDependencies": ["fade-in", "slide-left"],
+  "files": [
+    {
+      "path": "registry/bases/default/scenes/lower-third/index.tsx",
+      "type": "registry:block",
+      "content": "export const LowerThird = () => null;\n"
+    }
+  ]
+}

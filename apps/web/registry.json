@@ -1,8 +1,34 @@
 {
-  "$schema": "https://remotionui.dev/schema/registry.json",
+  "$schema": "https://remotionui.com/schema/registry.json",
   "name": "remotionui",
-  "homepage": "https://remotionui.dev",
+  "homepage": "https://remotionui.com",
   "items": [
+    {
+      "name": "timing",
+      "type": "registry:lib",
+      "description": "Frame timing helpers",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/bases/default/lib/timing.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "springs",
+      "type": "registry:lib",
+      "description": "Default spring configurations",
+      "dependencies": ["remotion"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/bases/default/lib/springs.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
     {
       "name": "fade-in",
       "type": "registry:ui",
@@ -13,6 +39,145 @@
         {
           "path": "registry/bases/default/primitives/fade-in.tsx",
           "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "fade-out",
+      "type": "registry:ui",
+      "description": "Fade out animation primitive",
+      "dependencies": ["remotion"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/bases/default/primitives/fade-out.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "slide-up",
+      "type": "registry:ui",
+      "description": "Slide up with fade animation",
+      "dependencies": ["remotion"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/bases/default/primitives/slide-up.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "slide-left",
+      "type": "registry:ui",
+      "description": "Slide left with fade animation",
+      "dependencies": ["remotion"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/bases/default/primitives/slide-left.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scale-in",
+      "type": "registry:ui",
+      "description": "Scale in with fade animation",
+      "dependencies": ["remotion"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/bases/default/primitives/scale-in.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "typewriter",
+      "type": "registry:ui",
+      "description": "Typewriter text reveal",
+      "dependencies": ["remotion"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/bases/default/primitives/typewriter.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "counter",
+      "type": "registry:ui",
+      "description": "Animated number counter",
+      "dependencies": ["remotion"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/bases/default/primitives/counter.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "blur-in",
+      "type": "registry:ui",
+      "description": "Blur in with fade animation",
+      "dependencies": ["remotion"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/bases/default/primitives/blur-in.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "lower-third",
+      "type": "registry:block",
+      "description": "Lower third name and subtitle overlay",
+      "dependencies": ["remotion"],
+      "registryDependencies": ["fade-in", "slide-left"],
+      "files": [
+        {
+          "path": "registry/bases/default/scenes/lower-third/index.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "title-card",
+      "type": "registry:block",
+      "description": "Centered title card scene",
+      "dependencies": ["remotion"],
+      "registryDependencies": ["fade-in", "scale-in"],
+      "files": [
+        {
+          "path": "registry/bases/default/scenes/title-card/index.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "intro",
+      "type": "registry:block",
+      "description": "5-second branded intro composition",
+      "dependencies": ["remotion"],
+      "registryDependencies": ["title-card", "fade-out"],
+      "composition": {
+        "id": "Intro",
+        "component": "Intro",
+        "durationInFrames": 150,
+        "fps": 30,
+        "width": 1920,
+        "height": 1080,
+        "importPath": "@/compositions/intro/index"
+      },
+      "files": [
+        {
+          "path": "registry/bases/default/compositions/intro/index.tsx",
+          "type": "registry:block"
         }
       ]
     }

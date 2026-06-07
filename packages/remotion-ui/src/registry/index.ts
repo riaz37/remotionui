@@ -5,11 +5,23 @@ export type RegistryFile = {
   content?: string;
 };
 
+export type CompositionMetaJson = {
+  id: string;
+  component: string;
+  durationInFrames: number;
+  fps: number;
+  width: number;
+  height: number;
+  importPath?: string;
+};
+
 export type RegistryItemJson = {
   name: string;
   type: string;
+  description?: string;
   dependencies?: string[];
   registryDependencies?: string[];
+  composition?: CompositionMetaJson;
   files: RegistryFile[];
 };
 

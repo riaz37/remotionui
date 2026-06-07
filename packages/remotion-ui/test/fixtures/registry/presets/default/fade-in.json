@@ -1,0 +1,13 @@
+{
+  "name": "fade-in",
+  "type": "registry:ui",
+  "dependencies": ["remotion"],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/bases/default/primitives/fade-in.tsx",
+      "type": "registry:ui",
+      "content": "export const FadeIn = () => null;\n"
+    }
+  ]
+}

@@ -4,6 +4,16 @@ The [shadcn/ui](https://ui.shadcn.com) equivalent for Remotion video development
 
 Copy-paste production-ready Remotion video components directly into your projects. No black-box npm package — you own the code, fully customisable.
 
+## Quick start
+
+```bash
+npx remotion-ui@latest init my-video
+cd my-video
+npx remotion-ui@latest add intro
+```
+
+Docs: [remotionui.com](https://remotionui.com)
+
 ## Monorepo Structure
 
 ```
@@ -12,7 +22,7 @@ remotionui/
 ├── packages/remotion-ui/  # CLI (published to npm)
 ├── packages/typescript-config/
 ├── packages/eslint-config/
-├── templates/             # Starter project scaffolds (coming soon)
+├── templates/             # Starter project scaffolds
 ├── skills/remotion-ui/    # Agent skill documentation
 └── scripts/               # Repo maintenance scripts
 ```

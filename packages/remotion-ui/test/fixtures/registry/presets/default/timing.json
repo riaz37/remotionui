@@ -1,0 +1,13 @@
+{
+  "name": "timing",
+  "type": "registry:lib",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/bases/default/lib/timing.ts",
+      "type": "registry:lib",
+      "content": "export const secondsToFrames = (s: number, fps: number) => Math.round(s * fps);\n"
+    }
+  ]
+}

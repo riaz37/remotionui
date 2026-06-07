@@ -1,0 +1,13 @@
+{
+  "title": "Primitives",
+  "pages": [
+    "fade-in",
+    "fade-out",
+    "slide-up",
+    "slide-left",
+    "scale-in",
+    "typewriter",
+    "counter",
+    "blur-in"
+  ]
+}

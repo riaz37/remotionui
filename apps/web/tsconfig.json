@@ -3,9 +3,12 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"],
+      "@/remotion/primitives/*": ["./registry/bases/default/primitives/*"],
+      "@/remotion/scenes/*": ["./registry/bases/default/scenes/*"],
+      "@/compositions/*": ["./registry/bases/default/compositions/*"],
+      "@/remotion/lib/*": ["./registry/bases/default/lib/*"],
+      "collections/*": ["./.source/*"]
     },
     "plugins": [
       {
@@ -22,6 +25,7 @@
     ".next/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "source.config.ts"
   ]
 }

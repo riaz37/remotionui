@@ -13,6 +13,17 @@ const explorer = cosmiconfig("remotion-ui", {
   ],
 });
 
+const CATEGORY_SEGMENTS: Array<{
+  segment: string;
+  key: keyof RemotionUiConfig["aliases"];
+}> = [
+  { segment: "/primitives/", key: "primitives" },
+  { segment: "/scenes/", key: "scenes" },
+  { segment: "/compositions/", key: "compositions" },
+  { segment: "/lib/", key: "lib" },
+  { segment: "/hooks/", key: "hooks" },
+];
+
 export async function getConfig(cwd: string): Promise<RemotionUiConfig> {
   const result = await explorer.search(cwd);
 
@@ -28,15 +39,40 @@ export async function getConfig(cwd: string): Promise<RemotionUiConfig> {
 export function getAliasForType(
   config: RemotionUiConfig,
   type: string,
+  filePath?: string,
 ): string | undefined {
+  if (filePath) {
+    const category = getCategoryFromPath(filePath);
+    if (category) {
+      return config.aliases[category.key];
+    }
+  }
+
   const map: Record<string, keyof RemotionUiConfig["aliases"]> = {
     "registry:ui": "primitives",
     "registry:lib": "lib",
     "registry:hook": "hooks",
+    "registry:block": "scenes",
   };
 
   const key = map[type];
   return key ? config.aliases[key] : undefined;
+}
+
+export function getCategoryFromPath(filePath: string): {
+  key: keyof RemotionUiConfig["aliases"];
+  relativePath: string;
+} | null {
+  for (const { segment, key } of CATEGORY_SEGMENTS) {
+    const index = filePath.indexOf(segment);
+    if (index !== -1) {
+      return {
+        key,
+        relativePath: filePath.slice(index + segment.length),
+      };
+    }
+  }
+  return null;
 }
 
 export function resolveAliasPath(cwd: string, alias: string): string {
@@ -60,7 +96,13 @@ export function resolveInstallPath(
     return path.resolve(cwd, file.target);
   }
 
-  const alias = getAliasForType(config, file.type);
+  const category = getCategoryFromPath(file.path);
+  if (category) {
+    const baseDir = resolveAliasPath(cwd, config.aliases[category.key]);
+    return path.join(baseDir, category.relativePath);
+  }
+
+  const alias = getAliasForType(config, file.type, file.path);
   if (!alias) {
     throw new Error(`No alias configured for registry type "${file.type}"`);
   }
@@ -68,4 +110,8 @@ export function resolveInstallPath(
   const baseDir = resolveAliasPath(cwd, alias);
   const fileName = path.basename(file.path);
   return path.join(baseDir, fileName);
+}
+
+export function isCompositionItem(files: Array<{ path: string }>): boolean {
+  return files.some((file) => file.path.includes("/compositions/"));
 }

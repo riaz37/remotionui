@@ -4,17 +4,25 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "pnpm registry:build && next build",
     "start": "next start",
     "lint": "tsc --noEmit",
-    "registry:build": "tsx scripts/build-registry.mts"
+    "registry:build": "tsx scripts/build-registry.mts",
+    "postinstall": "fumadocs-mdx"
   },
   "dependencies": {
     "@remotion/player": "^4.0.242",
-    "next": "^15.2.3",
+    "@tailwindcss/postcss": "^4.3.0",
+    "fumadocs-core": "^16.9.3",
+    "fumadocs-mdx": "^15.0.11",
+    "fumadocs-ui": "^16.9.3",
+    "next": "^16.0.0",
+    "postcss": "^8.5.15",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "remotion": "^4.0.242"
+    "remotion": "^4.0.242",
+    "tailwindcss": "^4.3.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@remotionui/typescript-config": "workspace:*",

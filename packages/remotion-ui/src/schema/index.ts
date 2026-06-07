@@ -24,11 +24,23 @@ export const remotionUiConfigSchema = z.object({
 
 export type RemotionUiConfig = z.infer<typeof remotionUiConfigSchema>;
 
+export const compositionMetaSchema = z.object({
+  id: z.string(),
+  component: z.string(),
+  durationInFrames: z.number(),
+  fps: z.number(),
+  width: z.number(),
+  height: z.number(),
+  importPath: z.string().optional(),
+});
+
 export const registryItemSchema = z.object({
   name: z.string(),
   type: z.string(),
+  description: z.string().optional(),
   dependencies: z.array(z.string()).optional(),
   registryDependencies: z.array(z.string()).optional(),
+  composition: compositionMetaSchema.optional(),
   files: z.array(
     z.object({
       path: z.string(),

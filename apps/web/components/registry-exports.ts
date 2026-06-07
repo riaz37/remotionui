@@ -1,0 +1,11 @@
+export { FadeIn } from "../registry/bases/default/primitives/fade-in";
+export { FadeOut } from "../registry/bases/default/primitives/fade-out";
+export { SlideUp } from "../registry/bases/default/primitives/slide-up";
+export { SlideLeft } from "../registry/bases/default/primitives/slide-left";
+export { ScaleIn } from "../registry/bases/default/primitives/scale-in";
+export { Typewriter } from "../registry/bases/default/primitives/typewriter";
+export { Counter } from "../registry/bases/default/primitives/counter";
+export { BlurIn } from "../registry/bases/default/primitives/blur-in";
+export { LowerThird } from "../registry/bases/default/scenes/lower-third";
+export { TitleCard } from "../registry/bases/default/scenes/title-card";
+export { Intro } from "../registry/bases/default/compositions/intro";
