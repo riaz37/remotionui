@@ -1,4 +1,11 @@
 {
   "title": "Scenes",
-  "pages": ["lower-third", "title-card"]
+  "pages": [
+    "lower-third",
+    "title-card",
+    "feature-list",
+    "stat-card",
+    "quote-card",
+    "end-card"
+  ]
 }

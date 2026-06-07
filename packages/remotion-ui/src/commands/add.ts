@@ -11,6 +11,7 @@ import {
   detectPackageManager,
   getInstallCommand,
 } from "../utils/get-package-manager.js";
+import { preflightAdd } from "../preflights/preflight-add.js";
 import { writeFile } from "../utils/index.js";
 
 export type AddOptions = {
@@ -29,6 +30,7 @@ export async function addCommand(
   }
 
   const cwd = path.resolve(options.cwd ?? process.cwd());
+  await preflightAdd(cwd);
   const config = await getConfig(cwd);
   const installed = new Set<string>();
   const dependencies = new Set<string>();

@@ -6,8 +6,8 @@
     {
       "name": "timing",
       "type": "registry:lib",
-      "description": "Frame timing helpers",
-      "dependencies": [],
+      "description": "Frame timing helpers and enter easing",
+      "dependencies": ["remotion"],
       "registryDependencies": [],
       "files": [
         {
@@ -26,6 +26,45 @@
         {
           "path": "registry/bases/default/lib/springs.ts",
           "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "motion-tokens",
+      "type": "registry:lib",
+      "description": "Named motion duration and stagger tokens",
+      "dependencies": ["remotion"],
+      "registryDependencies": ["timing"],
+      "files": [
+        {
+          "path": "registry/bases/default/lib/motion-tokens.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "layout",
+      "type": "registry:lib",
+      "description": "Format-agnostic layout helpers",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/bases/default/lib/layout.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "use-stagger",
+      "type": "registry:hook",
+      "description": "Hook for staggered child delays",
+      "dependencies": ["remotion"],
+      "registryDependencies": ["timing"],
+      "files": [
+        {
+          "path": "registry/bases/default/hooks/use-stagger.ts",
+          "type": "registry:hook"
         }
       ]
     },
@@ -134,6 +173,84 @@
       ]
     },
     {
+      "name": "spring-in",
+      "type": "registry:ui",
+      "description": "Spring scale-in animation",
+      "dependencies": ["remotion"],
+      "registryDependencies": ["springs"],
+      "files": [
+        {
+          "path": "registry/bases/default/primitives/spring-in.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "stagger-children",
+      "type": "registry:ui",
+      "description": "Stagger delayInFrames across children",
+      "dependencies": ["remotion"],
+      "registryDependencies": ["timing"],
+      "files": [
+        {
+          "path": "registry/bases/default/primitives/stagger-children.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "word-highlight",
+      "type": "registry:ui",
+      "description": "Spring-animated highlighter wipe on a word",
+      "dependencies": ["remotion"],
+      "registryDependencies": ["springs"],
+      "files": [
+        {
+          "path": "registry/bases/default/primitives/word-highlight.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "progress-bar",
+      "type": "registry:ui",
+      "description": "Animated progress bar",
+      "dependencies": ["remotion"],
+      "registryDependencies": ["timing"],
+      "files": [
+        {
+          "path": "registry/bases/default/primitives/progress-bar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "rotate-in",
+      "type": "registry:ui",
+      "description": "Rotate in with fade animation",
+      "dependencies": ["remotion"],
+      "registryDependencies": ["timing"],
+      "files": [
+        {
+          "path": "registry/bases/default/primitives/rotate-in.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "transition-fade",
+      "type": "registry:ui",
+      "description": "Fade transition helper for TransitionSeries",
+      "dependencies": ["remotion", "@remotion/transitions"],
+      "registryDependencies": ["springs"],
+      "files": [
+        {
+          "path": "registry/bases/default/primitives/transition-fade.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "lower-third",
       "type": "registry:block",
       "description": "Lower third name and subtitle overlay",
@@ -160,6 +277,64 @@
       ]
     },
     {
+      "name": "feature-list",
+      "type": "registry:block",
+      "description": "Staggered feature bullet list",
+      "dependencies": ["remotion"],
+      "registryDependencies": [
+        "stagger-children",
+        "slide-left",
+        "fade-in",
+        "layout",
+        "motion-tokens"
+      ],
+      "files": [
+        {
+          "path": "registry/bases/default/scenes/feature-list/index.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "stat-card",
+      "type": "registry:block",
+      "description": "Animated stat with counter",
+      "dependencies": ["remotion"],
+      "registryDependencies": ["counter", "spring-in", "layout"],
+      "files": [
+        {
+          "path": "registry/bases/default/scenes/stat-card/index.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "quote-card",
+      "type": "registry:block",
+      "description": "Quote with highlighted word",
+      "dependencies": ["remotion"],
+      "registryDependencies": ["word-highlight", "fade-in", "layout"],
+      "files": [
+        {
+          "path": "registry/bases/default/scenes/quote-card/index.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "end-card",
+      "type": "registry:block",
+      "description": "End card with CTA",
+      "dependencies": ["remotion"],
+      "registryDependencies": ["scale-in", "fade-in", "layout"],
+      "files": [
+        {
+          "path": "registry/bases/default/scenes/end-card/index.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
       "name": "intro",
       "type": "registry:block",
       "description": "5-second branded intro composition",
@@ -177,6 +352,34 @@
       "files": [
         {
           "path": "registry/bases/default/compositions/intro/index.tsx",
+          "type": "registry:block"
+        }
+      ]
+    },
+    {
+      "name": "showcase",
+      "type": "registry:block",
+      "description": "Full demo reel with TransitionSeries",
+      "dependencies": ["remotion", "@remotion/transitions"],
+      "registryDependencies": [
+        "transition-fade",
+        "title-card",
+        "feature-list",
+        "stat-card",
+        "end-card"
+      ],
+      "composition": {
+        "id": "Showcase",
+        "component": "Showcase",
+        "durationInFrames": 240,
+        "fps": 30,
+        "width": 1920,
+        "height": 1080,
+        "importPath": "@/compositions/showcase/index"
+      },
+      "files": [
+        {
+          "path": "registry/bases/default/compositions/showcase/index.tsx",
           "type": "registry:block"
         }
       ]

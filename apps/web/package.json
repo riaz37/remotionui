@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@remotion/player": "^4.0.242",
+    "@remotion/transitions": "^4.0.242",
     "@tailwindcss/postcss": "^4.3.0",
     "fumadocs-core": "^16.9.3",
     "fumadocs-mdx": "^15.0.11",

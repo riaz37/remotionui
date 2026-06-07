@@ -8,6 +8,7 @@
       "@/remotion/scenes/*": ["./registry/bases/default/scenes/*"],
       "@/compositions/*": ["./registry/bases/default/compositions/*"],
       "@/remotion/lib/*": ["./registry/bases/default/lib/*"],
+      "@/remotion/hooks/*": ["./registry/bases/default/hooks/*"],
       "collections/*": ["./.source/*"]
     },
     "plugins": [

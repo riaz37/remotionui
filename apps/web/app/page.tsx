@@ -9,6 +9,12 @@ const primitives = [
   { name: "Typewriter", slug: "typewriter" },
   { name: "Counter", slug: "counter" },
   { name: "Blur In", slug: "blur-in" },
+  { name: "Spring In", slug: "spring-in" },
+  { name: "Stagger Children", slug: "stagger-children" },
+  { name: "Word Highlight", slug: "word-highlight" },
+  { name: "Progress Bar", slug: "progress-bar" },
+  { name: "Rotate In", slug: "rotate-in" },
+  { name: "Transition Fade", slug: "transition-fade" },
 ];
 
 export default function HomePage() {

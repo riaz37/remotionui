@@ -8,6 +8,12 @@
     "scale-in",
     "typewriter",
     "counter",
-    "blur-in"
+    "blur-in",
+    "spring-in",
+    "stagger-children",
+    "word-highlight",
+    "progress-bar",
+    "rotate-in",
+    "transition-fade"
   ]
 }

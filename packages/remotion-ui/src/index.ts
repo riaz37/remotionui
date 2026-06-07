@@ -1,5 +1,7 @@
 import { Command } from "commander";
 import { addCommand } from "./commands/add.js";
+import { buildCommand } from "./commands/build.js";
+import { diffCommand } from "./commands/diff.js";
 import { initCommand } from "./commands/init.js";
 import { searchCommand } from "./commands/search.js";
 import { viewCommand } from "./commands/view.js";
@@ -9,7 +11,7 @@ const program = new Command();
 program
   .name("remotion-ui")
   .description("Add Remotion video components to your project")
-  .version("0.1.0");
+  .version("0.2.0");
 
 program
   .command("init")
@@ -98,12 +100,46 @@ program
   });
 
 program
+  .command("diff")
+  .description("Diff installed component vs registry")
+  .argument("<name>", "component name")
+  .option(
+    "-r, --registry-url <url>",
+    "Registry base URL or local path to public/r/",
+  )
+  .option("--preset <preset>", "Registry preset", "default")
+  .action(async (name: string, options) => {
+    try {
+      await diffCommand(name, {
+        registryUrl: options.registryUrl,
+        preset: options.preset,
+      });
+    } catch (error) {
+      console.error(
+        error instanceof Error ? error.message : "Diff failed",
+      );
+      process.exit(1);
+    }
+  });
+
+program
   .command("build")
   .description("Build a custom registry")
-  .argument("[registry]", "path to registry.json")
-  .action((registry?: string) => {
-    console.log("build:", registry ?? "registry.json");
-    console.log("build: coming soon");
+  .argument("[registry]", "path to registry.json", "registry.json")
+  .option("-o, --output <dir>", "output directory for built registry")
+  .option("--preset <preset>", "registry preset name", "default")
+  .action(async (registry: string, options) => {
+    try {
+      await buildCommand(registry, {
+        outputDir: options.output,
+        preset: options.preset,
+      });
+    } catch (error) {
+      console.error(
+        error instanceof Error ? error.message : "Build failed",
+      );
+      process.exit(1);
+    }
   });
 
 program.parse();

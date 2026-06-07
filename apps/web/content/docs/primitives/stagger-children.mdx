@@ -1,0 +1,12 @@
+---
+title: Stagger Children
+description: Wrapper that offsets delayInFrames per child for staggered entrances.
+---
+
+import { StaggerChildrenPreview } from '@/components/previews/stagger-children';
+
+<InstallCommand name="stagger-children" />
+
+<RemotionPreview component={StaggerChildrenPreview} durationInFrames={90} />
+
+Clones each child and adds a cumulative `delayInFrames` based on index. Works with any primitive that accepts `delayInFrames`.
