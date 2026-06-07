@@ -24,7 +24,7 @@
 
 ### Added
 
-- `.cursor/rules/remotion.mdc` — agent rule for registry/preview authoring
+- Agent rule for registry/preview authoring (`.cursor/rules/remotion.mdc`)
 - `scripts/patch-remotion-skill-docs.mjs` — preserve docs mirror after skill sync
 - `pnpm skills:sync` now refreshes official docs mirror automatically
 
