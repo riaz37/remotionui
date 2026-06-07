@@ -1,3 +1,72 @@
 @import "tailwindcss";
 @import "fumadocs-ui/css/neutral.css";
 @import "fumadocs-ui/css/preset.css";
+
+@theme {
+  --font-display: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --color-fd-background: oklch(0.985 0.006 85);
+  --color-fd-foreground: oklch(0.22 0.02 265);
+  --color-fd-card: oklch(1 0.004 85);
+  --color-fd-card-foreground: oklch(0.22 0.02 265);
+  --color-fd-popover: oklch(1 0.004 85);
+  --color-fd-popover-foreground: oklch(0.22 0.02 265);
+  --color-fd-primary: oklch(0.58 0.17 38);
+  --color-fd-primary-foreground: oklch(0.99 0.004 85);
+  --color-fd-secondary: oklch(0.95 0.01 85);
+  --color-fd-secondary-foreground: oklch(0.28 0.02 265);
+  --color-fd-muted: oklch(0.95 0.008 85);
+  --color-fd-muted-foreground: oklch(0.48 0.02 265);
+  --color-fd-accent: oklch(0.94 0.015 55);
+  --color-fd-accent-foreground: oklch(0.28 0.02 265);
+  --color-fd-border: oklch(0.88 0.01 85);
+  --color-fd-ring: oklch(0.58 0.17 38);
+}
+
+.dark {
+  --color-fd-background: oklch(0.14 0.015 265);
+  --color-fd-foreground: oklch(0.94 0.01 85);
+  --color-fd-card: oklch(0.17 0.015 265);
+  --color-fd-card-foreground: oklch(0.94 0.01 85);
+  --color-fd-popover: oklch(0.17 0.015 265);
+  --color-fd-popover-foreground: oklch(0.94 0.01 85);
+  --color-fd-primary: oklch(0.72 0.16 48);
+  --color-fd-primary-foreground: oklch(0.14 0.015 265);
+  --color-fd-secondary: oklch(0.2 0.015 265);
+  --color-fd-secondary-foreground: oklch(0.94 0.01 85);
+  --color-fd-muted: oklch(0.2 0.012 265);
+  --color-fd-muted-foreground: oklch(0.68 0.02 265);
+  --color-fd-accent: oklch(0.22 0.02 265);
+  --color-fd-accent-foreground: oklch(0.94 0.01 85);
+  --color-fd-border: oklch(0.26 0.015 265);
+  --color-fd-ring: oklch(0.72 0.16 48);
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Docs page polish */
+.prose h2 {
+  margin-top: 2.5rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--color-fd-border);
+}
+
+.prose code:not(pre code) {
+  border-radius: 0.35rem;
+  border: 1px solid var(--color-fd-border);
+  background: var(--color-fd-muted);
+  padding: 0.1rem 0.35rem;
+  font-size: 0.875em;
+}

@@ -1,21 +1,12 @@
 "use client";
 
-import { AbsoluteFill } from "remotion";
 import { RotateIn } from "../registry-exports";
+import { PreviewFrame, PreviewLabel } from "./preview-frame";
 
 export const RotateInPreview: React.FC = () => (
-  <RotateIn durationInFrames={30} degrees={-15}>
-    <AbsoluteFill
-      style={{
-        backgroundColor: "#0f172a",
-        justifyContent: "center",
-        alignItems: "center",
-        color: "white",
-        fontSize: 48,
-        fontFamily: "system-ui, sans-serif",
-      }}
-    >
-      Rotate In
-    </AbsoluteFill>
-  </RotateIn>
+  <PreviewFrame>
+    <RotateIn durationInFrames={30} degrees={-15}>
+      <PreviewLabel>Rotate In</PreviewLabel>
+    </RotateIn>
+  </PreviewFrame>
 );

@@ -3,18 +3,37 @@ title: Introduction
 description: The shadcn/ui of Remotion — copy-paste video components you own.
 ---
 
-RemotionUI lets you add production-ready Remotion video components directly into your project. No black-box npm package — you own the code.
+RemotionUI distributes production-ready Remotion components as **source you own**. The `remotion-ui` npm package is the CLI installer — not a runtime dependency for your video code.
 
-## Quick start
+<InitCommand />
 
-```bash
-npx remotion-ui@latest init my-video
-cd my-video
-npx remotion-ui@latest add fade-in
-```
+## How it works
+
+<Cards>
+  <Card
+    title="1. Initialize"
+    description="Scaffold a Remotion project with registry aliases and remotion-ui.json."
+    href="/docs/installation"
+  />
+  <Card
+    title="2. Add components"
+    description="Copy primitives, scenes, or full compositions into src/remotion/."
+    href="/docs/primitives/fade-in"
+  />
+  <Card
+    title="3. Compose"
+    description="Import locally and build videos with React — same mental model as UI components."
+    href="/docs/advanced/authoring-scenes"
+  />
+</Cards>
 
 ## Philosophy
 
-- **Registry-first** — components are distributed as source via JSON registry
-- **Copy-paste, not import** — files land in your `src/remotion/` directory
-- **CLI only on npm** — the `remotion-ui` package is the installer, not the components
+- **Registry-first** — components ship as JSON registry entries with resolved file trees
+- **Copy-paste, not import** — files land in your project; you control every line
+- **Motion primitives + scenes** — low-level enters/exits compose into full-frame layouts
+- **CLI ergonomics** — `search`, `diff`, `update`, and custom `build` for your own registry
+
+<Callout type="info">
+  New to Remotion? Start with [Installation](/docs/installation), then browse [Primitives](/docs/primitives/fade-in) with live previews on every page.
+</Callout>

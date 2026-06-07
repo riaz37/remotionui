@@ -1,21 +1,12 @@
 "use client";
 
-import { AbsoluteFill } from "remotion";
 import { FadeIn } from "../registry-exports";
+import { PreviewFrame, PreviewLabel } from "./preview-frame";
 
 export const FadeInPreview: React.FC = () => (
-  <FadeIn>
-    <AbsoluteFill
-      style={{
-        backgroundColor: "#0f172a",
-        justifyContent: "center",
-        alignItems: "center",
-        color: "white",
-        fontSize: 48,
-        fontFamily: "system-ui, sans-serif",
-      }}
-    >
-      Fade In
-    </AbsoluteFill>
-  </FadeIn>
+  <PreviewFrame>
+    <FadeIn>
+      <PreviewLabel>Fade In</PreviewLabel>
+    </FadeIn>
+  </PreviewFrame>
 );

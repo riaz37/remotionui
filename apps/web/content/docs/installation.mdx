@@ -5,10 +5,17 @@ description: Initialize a Remotion project with RemotionUI.
 
 ## New project
 
+<InitCommand />
+
 ```bash
-npx remotion-ui@latest init my-video
 cd my-video
 npm run dev
+```
+
+Open the Remotion Studio URL from your terminal, then add your first component:
+
+```bash
+npx remotion-ui@latest add fade-in
 ```
 
 ## Existing project
@@ -32,6 +39,15 @@ Then add components:
 
 ```bash
 npx remotion-ui@latest add fade-in
+npx remotion-ui@latest add lower-third
 ```
 
-See the [CLI Reference](/docs/cli) for `diff`, `update`, and custom registry `build`.
+<Callout type="warn">
+  Run `npx remotion-ui@latest add` from your project root so the CLI can read `remotion-ui.json` and resolve aliases.
+</Callout>
+
+## Next steps
+
+- [CLI Reference](/docs/cli) — `diff`, `update`, search, and custom registry `build`
+- [Authoring scenes](/docs/advanced/authoring-scenes) — layout patterns for multi-element scenes
+- [Primitives](/docs/primitives/fade-in) — browse all motion building blocks

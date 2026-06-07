@@ -3,28 +3,10 @@ title: Transition Slide
 description: Slide transition helper for TransitionSeries.
 ---
 
-<InstallCommand name="transition-slide" />
+<ComponentPage name="transition-slide">
 
-```tsx
-import { TransitionSeries } from "@remotion/transitions";
-import { transitionSlide } from "@/remotion/primitives/transition-slide";
+Exports `transitionSlide()` for directional scene transitions in `TransitionSeries`.
 
-const slide = transitionSlide({
-  direction: "from-left",
-  durationInFrames: 20,
-});
+Requires `@remotion/transitions`. Run `npx remotion add @remotion/transitions` if not already installed.
 
-<TransitionSeries>
-  <TransitionSeries.Sequence durationInFrames={60}>
-    <SceneA />
-  </TransitionSeries.Sequence>
-  <TransitionSeries.Transition {...slide} />
-  <TransitionSeries.Sequence durationInFrames={60}>
-    <SceneB />
-  </TransitionSeries.Sequence>
-</TransitionSeries>
-```
-
-Directions: `"from-left"`, `"from-right"`, `"from-top"`, `"from-bottom"`.
-
-Requires `@remotion/transitions`.
+</ComponentPage>

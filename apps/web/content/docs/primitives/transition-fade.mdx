@@ -3,26 +3,10 @@ title: Transition Fade
 description: Fade transition helper for TransitionSeries.
 ---
 
-<InstallCommand name="transition-fade" />
+<ComponentPage name="transition-fade">
 
-Exports `transitionFade()` and `getTransitionFadeDuration()` for `TransitionSeries.Transition`.
-
-```tsx
-import { TransitionSeries } from "@remotion/transitions";
-import { transitionFade } from "@/remotion/primitives/transition-fade";
-
-const fade = transitionFade({ durationInFrames: 15 });
-const springFade = transitionFade({ variant: "spring", durationInFrames: 20 });
-
-<TransitionSeries>
-  <TransitionSeries.Sequence durationInFrames={60}>
-    <SceneA />
-  </TransitionSeries.Sequence>
-  <TransitionSeries.Transition {...fade} />
-  <TransitionSeries.Sequence durationInFrames={60}>
-    <SceneB />
-  </TransitionSeries.Sequence>
-</TransitionSeries>
-```
+Exports `transitionFade()` and `getTransitionFadeDuration()` for use with `TransitionSeries.Transition`.
 
 Requires `@remotion/transitions`. Run `npx remotion add @remotion/transitions` if not already installed.
+
+</ComponentPage>

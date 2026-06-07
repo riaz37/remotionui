@@ -1,5 +1,18 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- **Docs site redesign** — custom theme, homepage hero with live preview, nav/footer, copy-to-clipboard install commands
+- **`ComponentPage`** — usage examples, props tables, and related links on all component reference pages
+- **Preview fixes** — correct primitive preview framing, muted autoplay, balanced preview sizing
+
+### Fixed
+
+- Nested anchor hydration error in docs nav (`SiteLogo`)
+- Doc preview text clipped off-screen on motion primitives
+
 ## 0.2.2
 
 ### Changed

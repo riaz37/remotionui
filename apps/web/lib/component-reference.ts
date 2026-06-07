@@ -1,0 +1,513 @@
+export type PropDefinition = {
+  name: string;
+  type: string;
+  default?: string;
+  required?: boolean;
+  description: string;
+};
+
+export type ComponentReference = {
+  category: "primitive" | "scene" | "composition" | "utility";
+  usage: string;
+  props: PropDefinition[];
+  related?: string[];
+  note?: string;
+};
+
+const motionChildProps: PropDefinition[] = [
+  {
+    name: "children",
+    type: "ReactNode",
+    required: true,
+    description: "Content to animate.",
+  },
+  {
+    name: "durationInFrames",
+    type: "number",
+    default: "30",
+    description: "Length of the enter animation in frames.",
+  },
+  {
+    name: "delayInFrames",
+    type: "number",
+    default: "0",
+    description: "Frames to wait before the animation starts.",
+  },
+];
+
+export const componentReference: Record<string, ComponentReference> = {
+  "fade-in": {
+    category: "primitive",
+    usage: `import { FadeIn } from "@/remotion/primitives/fade-in";
+
+<FadeIn durationInFrames={30}>
+  <div>Hello world</div>
+</FadeIn>`,
+    props: motionChildProps,
+    related: ["fade-out", "slide-up"],
+  },
+  "fade-out": {
+    category: "primitive",
+    usage: `import { FadeOut } from "@/remotion/primitives/fade-out";
+
+<FadeOut durationInFrames={24}>
+  <div>Goodbye</div>
+</FadeOut>`,
+    props: motionChildProps,
+    related: ["fade-in"],
+  },
+  "slide-up": {
+    category: "primitive",
+    usage: `import { SlideUp } from "@/remotion/primitives/slide-up";
+
+<SlideUp distance={80}>
+  <h1>Title</h1>
+</SlideUp>`,
+    props: [
+      ...motionChildProps,
+      {
+        name: "distance",
+        type: "number",
+        default: "60",
+        description: "Vertical offset in pixels at the start of the animation.",
+      },
+    ],
+    related: ["slide-left", "fade-in"],
+  },
+  "slide-left": {
+    category: "primitive",
+    usage: `import { SlideLeft } from "@/remotion/primitives/slide-left";
+
+<SlideLeft distance={60}>
+  <p>Slide in from the left</p>
+</SlideLeft>`,
+    props: [
+      ...motionChildProps,
+      {
+        name: "distance",
+        type: "number",
+        default: "60",
+        description: "Horizontal offset in pixels at the start of the animation.",
+      },
+    ],
+    related: ["slide-up", "stagger-children"],
+  },
+  "scale-in": {
+    category: "primitive",
+    usage: `import { ScaleIn } from "@/remotion/primitives/scale-in";
+
+<ScaleIn durationInFrames={24}>
+  <img src={staticFile("logo.png")} />
+</ScaleIn>`,
+    props: motionChildProps,
+    related: ["spring-in", "fade-in"],
+  },
+  typewriter: {
+    category: "primitive",
+    usage: `import { Typewriter } from "@/remotion/primitives/typewriter";
+
+<Typewriter
+  text="Build videos with React."
+  charFrames={2}
+  pauseAfter="React."
+  pauseSeconds={0.5}
+/>`,
+    props: [
+      {
+        name: "text",
+        type: "string",
+        required: true,
+        description: "Full string to reveal character by character.",
+      },
+      {
+        name: "charFrames",
+        type: "number",
+        description: "Frames per character (preferred over durationInFrames).",
+      },
+      {
+        name: "durationInFrames",
+        type: "number",
+        description: "Legacy total duration when charFrames is omitted.",
+      },
+      {
+        name: "delayInFrames",
+        type: "number",
+        default: "0",
+        description: "Frames before typing begins.",
+      },
+      {
+        name: "pauseAfter",
+        type: "string",
+        description: "Pause after this substring is typed.",
+      },
+      {
+        name: "pauseSeconds",
+        type: "number",
+        description: "Length of the pause in seconds.",
+      },
+      {
+        name: "showCursor",
+        type: "boolean",
+        default: "true",
+        description: "Show a blinking cursor while typing.",
+      },
+    ],
+    related: ["word-highlight", "counter"],
+  },
+  counter: {
+    category: "primitive",
+    usage: `import { Counter } from "@/remotion/primitives/counter";
+
+<Counter from={0} to={100} suffix="%" durationInFrames={45} />`,
+    props: [
+      {
+        name: "to",
+        type: "number",
+        required: true,
+        description: "Target value to count toward.",
+      },
+      {
+        name: "from",
+        type: "number",
+        default: "0",
+        description: "Starting value.",
+      },
+      {
+        name: "durationInFrames",
+        type: "number",
+        default: "30",
+        description: "Frames over which the count animates.",
+      },
+      {
+        name: "suffix",
+        type: "string",
+        description: "Text appended after the number (e.g. %, K, M).",
+      },
+    ],
+    related: ["stat-card", "progress-bar"],
+  },
+  "blur-in": {
+    category: "primitive",
+    usage: `import { BlurIn } from "@/remotion/primitives/blur-in";
+
+<BlurIn maxBlur={12}>
+  <h1>Focus reveal</h1>
+</BlurIn>`,
+    props: [
+      ...motionChildProps,
+      {
+        name: "maxBlur",
+        type: "number",
+        default: "8",
+        description: "Maximum blur radius in pixels at frame 0.",
+      },
+    ],
+    related: ["fade-in", "scale-in"],
+  },
+  "spring-in": {
+    category: "primitive",
+    usage: `import { SpringIn } from "@/remotion/primitives/spring-in";
+
+<SpringIn durationInFrames={40}>
+  <div>Bouncy entrance</div>
+</SpringIn>`,
+    props: motionChildProps,
+    related: ["scale-in", "rotate-in"],
+  },
+  "stagger-children": {
+    category: "primitive",
+    usage: `import { StaggerChildren } from "@/remotion/primitives/stagger-children";
+import { SlideLeft } from "@/remotion/primitives/slide-left";
+
+<StaggerChildren staggerInFrames={8}>
+  {items.map((item) => (
+    <SlideLeft key={item}><span>{item}</span></SlideLeft>
+  ))}
+</StaggerChildren>`,
+    props: [
+      {
+        name: "children",
+        type: "ReactNode",
+        required: true,
+        description: "Child elements to stagger in sequence.",
+      },
+      {
+        name: "staggerInFrames",
+        type: "number",
+        default: "6",
+        description: "Delay between each child in frames.",
+      },
+      {
+        name: "baseDelayInFrames",
+        type: "number",
+        default: "0",
+        description: "Initial delay before the first child animates.",
+      },
+    ],
+    note: "Installs `motion-wrapper` automatically. Each child should use an enter primitive.",
+    related: ["slide-left", "fade-in"],
+  },
+  "word-highlight": {
+    category: "primitive",
+    usage: `import { WordHighlight } from "@/remotion/primitives/word-highlight";
+
+<WordHighlight
+  text="Ship faster with RemotionUI"
+  highlightWord="RemotionUI"
+  highlightColor="#f97316"
+/>`,
+    props: [
+      {
+        name: "text",
+        type: "string",
+        required: true,
+        description: "Full sentence to render.",
+      },
+      {
+        name: "highlightWord",
+        type: "string",
+        required: true,
+        description: "Substring to highlight with an animated wipe.",
+      },
+      {
+        name: "durationInFrames",
+        type: "number",
+        default: "30",
+        description: "Highlight wipe duration.",
+      },
+      {
+        name: "highlightColor",
+        type: "string",
+        description: "Background color behind the highlighted word.",
+      },
+      {
+        name: "fontSize",
+        type: "number",
+        description: "Text size in pixels.",
+      },
+    ],
+    related: ["quote-card", "typewriter"],
+  },
+  "progress-bar": {
+    category: "primitive",
+    usage: `import { ProgressBar } from "@/remotion/primitives/progress-bar";
+
+<ProgressBar progress={0.75} label="Rendering" color="#f97316" />`,
+    props: [
+      {
+        name: "progress",
+        type: "number",
+        default: "animated 0→1",
+        description: "Fill amount from 0 to 1. Animates when omitted.",
+      },
+      {
+        name: "durationInFrames",
+        type: "number",
+        default: "30",
+        description: "Frames to animate progress when not fixed.",
+      },
+      {
+        name: "label",
+        type: "string",
+        description: "Optional label shown beside the bar.",
+      },
+      {
+        name: "color",
+        type: "string",
+        description: "Fill color of the progress bar.",
+      },
+      {
+        name: "height",
+        type: "number",
+        description: "Bar height in pixels.",
+      },
+    ],
+    related: ["counter", "intro"],
+  },
+  "rotate-in": {
+    category: "primitive",
+    usage: `import { RotateIn } from "@/remotion/primitives/rotate-in";
+
+<RotateIn degrees={-12} durationInFrames={30}>
+  <div>Rotate in</div>
+</RotateIn>`,
+    props: [
+      ...motionChildProps,
+      {
+        name: "degrees",
+        type: "number",
+        default: "-10",
+        description: "Starting rotation in degrees.",
+      },
+    ],
+    related: ["spring-in", "scale-in"],
+  },
+  "transition-fade": {
+    category: "primitive",
+    usage: `import { TransitionSeries } from "@remotion/transitions";
+import { transitionFade } from "@/remotion/primitives/transition-fade";
+
+<TransitionSeries>
+  <TransitionSeries.Sequence durationInFrames={60}>...</TransitionSeries.Sequence>
+  <TransitionSeries.Transition {...transitionFade({ durationInFrames: 15 })} />
+  <TransitionSeries.Sequence durationInFrames={60}>...</TransitionSeries.Sequence>
+</TransitionSeries>`,
+    props: [
+      {
+        name: "durationInFrames",
+        type: "number",
+        default: "15",
+        description: "Overlap duration between scenes.",
+      },
+      {
+        name: "variant",
+        type: '"linear" | "spring"',
+        default: '"linear"',
+        description: "Timing curve for the fade.",
+      },
+    ],
+    note: "Returns a config object for `TransitionSeries.Transition`, not a React component.",
+    related: ["transition-slide", "showcase"],
+  },
+  "transition-slide": {
+    category: "primitive",
+    usage: `import { transitionSlide } from "@/remotion/primitives/transition-slide";
+
+<TransitionSeries.Transition
+  {...transitionSlide({ direction: "from-left", durationInFrames: 20 })}
+/>`,
+    props: [
+      {
+        name: "durationInFrames",
+        type: "number",
+        default: "20",
+        description: "Overlap duration between scenes.",
+      },
+      {
+        name: "direction",
+        type: "string",
+        default: '"from-right"',
+        description: "Slide direction: from-left, from-right, from-top, from-bottom.",
+      },
+    ],
+    note: "Returns a config object for `TransitionSeries.Transition`, not a React component.",
+    related: ["transition-fade", "showcase"],
+  },
+  "lower-third": {
+    category: "scene",
+    usage: `import { LowerThird } from "@/remotion/scenes/lower-third";
+
+<LowerThird
+  title="Jane Doe"
+  subtitle="Product Designer"
+  accentColor="#f97316"
+/>`,
+    props: [
+      { name: "title", type: "string", required: true, description: "Primary line." },
+      { name: "subtitle", type: "string", description: "Secondary line." },
+      { name: "accentColor", type: "string", description: "Accent bar color." },
+      { name: "backgroundColor", type: "string", description: "Panel background." },
+    ],
+    note: "Installs `fade-in` and `slide-left` as dependencies.",
+    related: ["title-card", "end-card"],
+  },
+  "title-card": {
+    category: "scene",
+    usage: `import { TitleCard } from "@/remotion/scenes/title-card";
+
+<TitleCard title="Launch Week" subtitle="Day 1" />`,
+    props: [
+      { name: "title", type: "string", required: true, description: "Main heading." },
+      { name: "subtitle", type: "string", description: "Supporting line." },
+      { name: "accentColor", type: "string", description: "Accent elements." },
+      { name: "backgroundColor", type: "string", description: "Scene background." },
+    ],
+    related: ["intro", "end-card"],
+  },
+  "feature-list": {
+    category: "scene",
+    usage: `import { FeatureList } from "@/remotion/scenes/feature-list";
+
+<FeatureList
+  title="Why RemotionUI"
+  items={["Own your components", "Live previews", "CLI workflow"]}
+/>`,
+    props: [
+      { name: "items", type: "string[]", required: true, description: "Bullet list items." },
+      { name: "title", type: "string", description: "Section heading." },
+      { name: "accentColor", type: "string", description: "Bullet and accent color." },
+    ],
+    note: "Installs `stagger-children`, `slide-left`, and `fade-in`.",
+    related: ["stat-card", "showcase"],
+  },
+  "stat-card": {
+    category: "scene",
+    usage: `import { StatCard } from "@/remotion/scenes/stat-card";
+
+<StatCard value={98} label="Satisfaction" suffix="%" />`,
+    props: [
+      { name: "value", type: "number", required: true, description: "Number to count up to." },
+      { name: "label", type: "string", required: true, description: "Metric label." },
+      { name: "suffix", type: "string", description: "Appended to the value." },
+    ],
+    note: "Installs `counter` and `fade-in`.",
+    related: ["counter", "feature-list"],
+  },
+  "quote-card": {
+    category: "scene",
+    usage: `import { QuoteCard } from "@/remotion/scenes/quote-card";
+
+<QuoteCard
+  quote="The best way to ship motion graphics"
+  highlightWord="motion"
+  author="— Team"
+/>`,
+    props: [
+      { name: "quote", type: "string", required: true, description: "Quote body." },
+      { name: "highlightWord", type: "string", required: true, description: "Word to highlight." },
+      { name: "author", type: "string", required: true, description: "Attribution line." },
+    ],
+    note: "Installs `word-highlight`.",
+    related: ["word-highlight", "title-card"],
+  },
+  "end-card": {
+    category: "scene",
+    usage: `import { EndCard } from "@/remotion/scenes/end-card";
+
+<EndCard title="Thanks for watching" cta="Subscribe" url="youtube.com" />`,
+    props: [
+      { name: "title", type: "string", required: true, description: "Closing headline." },
+      { name: "cta", type: "string", description: "Call-to-action label." },
+      { name: "url", type: "string", description: "URL shown with the CTA." },
+    ],
+    related: ["title-card", "intro"],
+  },
+  intro: {
+    category: "composition",
+    usage: `import { Intro } from "@/remotion/compositions/intro";
+
+<Intro title="My Product" subtitle="Launch video" />`,
+    props: [
+      { name: "title", type: "string", default: '"RemotionUI"', description: "Main title." },
+      { name: "subtitle", type: "string", description: "Tagline under the title." },
+    ],
+    note: "Full intro sequence with staggered title, subtitle, and progress bar.",
+    related: ["showcase", "title-card"],
+  },
+  showcase: {
+    category: "composition",
+    usage: `import { Showcase } from "@/remotion/compositions/showcase";
+
+<Showcase title="Demo Reel" subtitle="Transitions & scenes" />`,
+    props: [
+      { name: "title", type: "string", description: "Opening title." },
+      { name: "subtitle", type: "string", description: "Opening subtitle." },
+    ],
+    note: "Demo reel using TransitionSeries across multiple scenes.",
+    related: ["transition-fade", "feature-list"],
+  },
+};
+
+export function getComponentReference(name: string): ComponentReference | undefined {
+  return componentReference[name];
+}
